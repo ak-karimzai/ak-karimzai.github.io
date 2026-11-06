@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Khalid Karimzai — Backend and 3D web developer</title>
+  <meta name="description" content="Khalid Karimzai builds backend services (Go, Java/Kotlin, .NET) and interactive 3D interfaces for business software with three.js and WebGPU. Live examples and a project enquiry form.">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ak-karimzai.github.io/">
+  <meta property="og:title" content="Khalid Karimzai — Backend and 3D web developer">
+  <meta property="og:description" content="Backend services and interactive 3D interfaces for business software. Live three.js examples and a project enquiry form.">
+  <meta property="og:image" content="https://ak-karimzai.github.io/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <script type="module" crossorigin src="/assets/index-DYAhAMx5.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-BrPIbxpO.css">
+</head>
+<body>
+  <a class="skip" href="#examples">Skip to content</a>
+
+  <header class="nav" id="nav">
+    <div class="wrap nav-inner">
+      <a class="wordmark" href="#top">Khalid Karimzai<span>Software engineer</span></a>
+      <nav class="nav-links" aria-label="Sections">
+        <a href="#examples">Examples</a>
+        <a href="#services">Services</a>
+        <a href="#code">Code</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="button button-primary button-small" href="#contact">Start a project</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-text">
+          <p class="overline">Backend and 3D web development · Moscow</p>
+          <h1>Backend systems and 3D interfaces for business software</h1>
+          <p class="lede">I build the services behind business applications in Go, Java/Kotlin and .NET, and the interactive 3D views that sit on top of them: system maps, digital twins, operations dashboards and product configurators.</p>
+          <div class="actions">
+            <a class="button button-primary" href="#contact">Start a project</a>
+            <a class="button button-secondary" href="#examples">View examples</a>
+          </div>
+          <dl class="facts">
+            <div><dt>Backend</dt><dd>Go, Java / Kotlin, ASP.NET Core</dd></div>
+            <div><dt>Data and delivery</dt><dd>PostgreSQL, Docker, CI pipelines</dd></div>
+            <div><dt>3D on the web</dt><dd>three.js, WebGPU, TSL</dd></div>
+            <div><dt>Availability</dt><dd>Taking new projects</dd></div>
+          </dl>
+        </div>
+
+        <figure class="figure hero-figure">
+          <figcaption class="figure-head">
+            <span>Service map — payment platform, sample data</span>
+            <span class="figure-badge" id="hero-badge"></span>
+          </figcaption>
+          <div class="figure-view figure-view-hero">
+            <canvas id="hero-canvas" aria-label="3D map of services in a payment platform. Hover a service to read its metrics."></canvas>
+            <div class="figure-labels" id="hero-labels" aria-hidden="true"></div>
+            <div class="figure-tip" id="hero-tip" hidden></div>
+            <p class="figure-loading" id="hero-loading">Loading 3D view…</p>
+          </div>
+          <p class="figure-note">Live 3D view of the services behind an online payment flow. Hover a service to see its request rate, latency and error rate. Rendered with three.js WebGPURenderer.</p>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Examples -->
+    <section class="section" id="examples">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Interactive examples</h2>
+          <p>Working 3D views of the kind used in operations, logistics and commerce software. They run live on this page with the three.js <code>WebGPURenderer</code> and shaders written in TSL, and fall back to WebGL 2 where WebGPU is not available. All figures are sample data.</p>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Examples">
+          <button class="tab is-active" role="tab" aria-selected="true" aria-controls="demo-stage" id="tab-warehouse" data-demo="warehouse">Warehouse digital twin</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="demo-stage" id="tab-dataviz" data-demo="dataviz" tabindex="-1">Operations dashboard</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="demo-stage" id="tab-configurator" data-demo="configurator" tabindex="-1">Product configurator</button>
+        </div>
+
+        <div class="demo">
+          <div class="figure-view demo-view" id="demo-stage" role="tabpanel" aria-labelledby="tab-warehouse">
+            <canvas id="demo-canvas" aria-label="Interactive 3D example. Drag to rotate."></canvas>
+            <div class="figure-tip" id="demo-tip" hidden></div>
+            <p class="figure-loading" id="demo-loading">Loading 3D view…</p>
+            <p class="figure-hint" id="demo-hint">Hover a rack · drag to rotate</p>
+            <span class="figure-badge figure-badge-float" id="demo-badge"></span>
+          </div>
+
+          <aside class="demo-panel">
+            <!-- Warehouse -->
+            <div class="panel" data-panel="warehouse">
+              <h3>Warehouse digital twin</h3>
+              <p>Rack occupancy and picking activity for a small distribution warehouse, with an automated vehicle on its route. Hover any rack bay to see its contents.</p>
+              <p class="panel-use"><strong>Typical use</strong> Warehouse management, facility monitoring, capacity planning.</p>
+              <div class="control">
+                <span class="control-label">Colour bays by</span>
+                <div class="segmented" id="wh-metric" role="radiogroup" aria-label="Colour bays by"></div>
+              </div>
+              <dl class="stats">
+                <div><dt>Pallets stored</dt><dd id="wh-pallets">–</dd></div>
+                <div><dt>Utilisation</dt><dd id="wh-util">–</dd></div>
+                <div><dt>Full bays</dt><dd id="wh-full">–</dd></div>
+                <div><dt>Vehicle</dt><dd id="wh-agv">–</dd></div>
+              </dl>
+            </div>
+
+            <!-- Operations dashboard -->
+            <div class="panel" data-panel="dataviz" hidden>
+              <h3>Operations dashboard</h3>
+              <p>One week of API traffic, hour by hour, drawn as a surface so that daily and weekly patterns are visible at once. Hover a bar to read its value.</p>
+              <p class="panel-use"><strong>Typical use</strong> Service monitoring, capacity reviews, management reporting.</p>
+              <div class="control">
+                <span class="control-label">Metric</span>
+                <div class="segmented" id="viz-metric" role="radiogroup" aria-label="Metric"></div>
+              </div>
+              <dl class="stats">
+                <div><dt>Peak</dt><dd id="viz-peak">–</dd></div>
+                <div><dt>Average</dt><dd id="viz-avg">–</dd></div>
+                <div><dt>Busiest hour</dt><dd id="viz-when">–</dd></div>
+              </dl>
+            </div>
+
+            <!-- Configurator -->
+            <div class="panel" data-panel="configurator" hidden>
+              <h3>Product configurator</h3>
+              <p>Customers choose options and see the product and its price change. The model here is generated in code; a real project uses your product's CAD or 3D files.</p>
+              <p class="panel-use"><strong>Typical use</strong> E-commerce, made-to-order manufacturing, sales tools.</p>
+              <div class="control">
+                <span class="control-label">Shell colour</span>
+                <div class="swatches" id="cfg-color" role="radiogroup" aria-label="Shell colour"></div>
+              </div>
+              <div class="control">
+                <span class="control-label">Finish</span>
+                <div class="segmented" id="cfg-finish" role="radiogroup" aria-label="Finish"></div>
+              </div>
+              <div class="control">
+                <span class="control-label">Accent ring</span>
+                <div class="swatches" id="cfg-accent" role="radiogroup" aria-label="Accent ring colour"></div>
+              </div>
+              <dl class="stats">
+                <div><dt>Configuration</dt><dd id="cfg-summary">–</dd></div>
+                <div><dt>Sample price</dt><dd id="cfg-price">–</dd></div>
+              </dl>
+            </div>
+
+            <a class="text-link" id="demo-order" href="#contact" data-type="3D interface (digital twin, dashboard, configurator)">Enquire about a project like this →</a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section section-wash" id="services">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Services</h2>
+          <p>Fixed-scope projects for companies and teams. Each engagement ends with source code you own, documentation and a deployment that runs.</p>
+        </div>
+        <div class="grid-cells">
+          <article class="cell">
+            <h3>Backend services and APIs</h3>
+            <p>REST and gRPC services designed around your domain, with a relational schema, authentication and tests.</p>
+            <h4>Deliverables</h4>
+            <ul>
+              <li>Service code with a clean, layered architecture</li>
+              <li>Database schema and migrations</li>
+              <li>OpenAPI documentation and a Docker setup</li>
+            </ul>
+            <p class="cell-stack">Go · Java / Kotlin (Spring) · ASP.NET Core · PostgreSQL</p>
+          </article>
+          <article class="cell">
+            <h3>3D interfaces for the web</h3>
+            <p>Interactive views of real systems and products, connected to your data and usable in a normal browser without plugins.</p>
+            <h4>Deliverables</h4>
+            <ul>
+              <li>Digital twins, system maps and dashboards</li>
+              <li>Product configurators with pricing logic</li>
+              <li>Optimised models that load fast on phones</li>
+            </ul>
+            <p class="cell-stack">three.js · WebGPU / WebGL 2 · TSL</p>
+          </article>
+          <article class="cell">
+            <h3>Business web applications</h3>
+            <p>Internal tools, admin panels and shops: the interface, the API behind it and the database, delivered as one working product.</p>
+            <h4>Deliverables</h4>
+            <ul>
+              <li>Role-based admin interfaces</li>
+              <li>Order, catalogue and customer workflows</li>
+              <li>Reports and exports</li>
+            </ul>
+            <p class="cell-stack">ASP.NET Core MVC · Vue · PostgreSQL</p>
+          </article>
+          <article class="cell">
+            <h3>Automation and data collection</h3>
+            <p>Scripts and services that collect data from websites, process files or connect two systems on a schedule.</p>
+            <h4>Deliverables</h4>
+            <ul>
+              <li>Scrapers and importers with error handling</li>
+              <li>Scheduled jobs packaged in Docker</li>
+              <li>Clean output in your database or spreadsheets</li>
+            </ul>
+            <p class="cell-stack">Python · Docker</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Code -->
+    <section class="section" id="code">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Code you can review</h2>
+          <p>Public repositories from my GitHub account, chosen for the patterns that matter in business backends: layered architecture, validation, API documentation, containerised deployment.</p>
+        </div>
+        <table class="repo-table">
+          <thead>
+            <tr><th scope="col">Repository</th><th scope="col">What it is</th><th scope="col">Patterns and stack</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row"><a href="https://github.com/ak-karimzai/FileService" target="_blank" rel="noopener">FileService</a></th>
+              <td>File storage REST service. Files are kept on disk, their metadata in a database; uploads are validated and errors are returned in a uniform format.</td>
+              <td>Java · Clean architecture (API / Core / Infrastructure) · CQRS commands and queries with validators · Swagger · Docker Compose</td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ak-karimzai/Gtracker" target="_blank" rel="noopener">Gtracker</a></th>
+              <td>Goal and task tracking API with sign-up, login and list filtering, built for a team-development course.</td>
+              <td>Go · HTTP handlers with DTO validation and unit tests · Swagger docs · Docker Compose · GitLab CI</td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ak-karimzai/PieShop" target="_blank" rel="noopener">PieShop</a> and <a href="https://github.com/ak-karimzai/PieShopAdmin" target="_blank" rel="noopener">PieShopAdmin</a></th>
+              <td>Online shop with a separate administration application for products, categories and orders.</td>
+              <td>C# · ASP.NET Core MVC · Entity Framework migrations · Repository pattern · PostgreSQL · Docker</td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ak-karimzai/TBank-FinTech" target="_blank" rel="noopener">TBank-FinTech</a></th>
+              <td>Assignments from the T-Bank “Fintech: Java development” course, including message-queue benchmarks run under Docker Compose.</td>
+              <td>Kotlin / Java · Gradle · Message queues · Docker Compose · GitHub Actions</td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ak-karimzai/bank-api" target="_blank" rel="noopener">bank-api</a></th>
+              <td>Banking API with accounts, ledger entries and money transfers, built while following the Go Backend Master Class.</td>
+              <td>Go · PostgreSQL transactions · Makefile workflow · Docker Compose</td>
+            </tr>
+            <tr>
+              <th scope="row"><a href="https://github.com/ak-karimzai/ak-karimzai.github.io" target="_blank" rel="noopener">ak-karimzai.github.io</a></th>
+              <td>This page: the service map, warehouse twin, dashboard and configurator, the WebGPU-to-WebGL fallback and the enquiry form.</td>
+              <td>JavaScript · three.js WebGPURenderer · TSL · Vite · GitHub Pages</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="aside-note"><a href="https://github.com/ak-karimzai?tab=repositories" target="_blank" rel="noopener">All repositories on GitHub →</a></p>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section class="section section-wash" id="process">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>How a project runs</h2>
+        </div>
+        <ol class="steps">
+          <li><span class="step-index">1</span><h3>Brief</h3><p>You describe what you need. A few paragraphs are enough; I will ask about the rest.</p></li>
+          <li><span class="step-index">2</span><h3>Scope and quote</h3><p>I reply with questions, then a written scope with a fixed price and a timeline before any work starts.</p></li>
+          <li><span class="step-index">3</span><h3>Build with previews</h3><p>You follow progress in a repository and on a preview link, and review each milestone.</p></li>
+          <li><span class="step-index">4</span><h3>Handover</h3><p>You receive the source code, setup documentation and help with deployment to your infrastructure.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+      <div class="wrap contact-grid">
+        <div>
+          <div class="section-head">
+            <h2>Start a project</h2>
+            <p>Describe the project in the form, then send it by the channel you prefer. The form prepares the message on your side; nothing is stored on this site.</p>
+          </div>
+          <dl class="contacts">
+            <div><dt>Telegram</dt><dd><a id="c-telegram" href="#" target="_blank" rel="noopener"></a></dd></div>
+            <div><dt>Email</dt><dd><a id="c-email" href="#"></a></dd></div>
+            <div><dt>GitHub</dt><dd><a id="c-github" href="#" target="_blank" rel="noopener"></a></dd></div>
+            <div><dt>X</dt><dd><a id="c-x" href="#" target="_blank" rel="noopener"></a></dd></div>
+          </dl>
+        </div>
+
+        <form class="form" id="order-form" novalidate>
+          <div class="form-row">
+            <div class="field">
+              <label for="f-name">Your name</label>
+              <input type="text" id="f-name" name="name" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="f-company">Company <span class="muted">optional</span></label>
+              <input type="text" id="f-company" name="company" autocomplete="organization">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="f-contact">Where to reply <span class="muted">email or Telegram</span></label>
+              <input type="text" id="f-contact" name="contact" autocomplete="email" placeholder="name@company.com or @username">
+            </div>
+            <div class="field">
+              <label for="f-type">Project type</label>
+              <select id="f-type" name="type"></select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="f-budget">Budget</label>
+              <select id="f-budget" name="budget"></select>
+            </div>
+            <div class="field">
+              <label for="f-deadline">Deadline <span class="muted">optional</span></label>
+              <input type="text" id="f-deadline" name="deadline" placeholder="e.g. end of January">
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-details">What should it do?</label>
+            <textarea id="f-details" name="details" rows="7" required placeholder="Who will use it, the main features, and what already exists (systems, data, designs)."></textarea>
+          </div>
+
+          <p class="form-error" id="form-error" role="alert" hidden></p>
+
+          <div class="form-actions">
+            <button type="button" class="button button-primary" data-send="telegram">Send on Telegram</button>
+            <button type="button" class="button button-secondary" data-send="email">Send by email</button>
+            <button type="button" class="button button-text" data-send="github">Open as a GitHub issue</button>
+          </div>
+          <p class="form-note">Telegram and email open with your brief already written. A GitHub issue is public, so your contact details are left out of it.</p>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <p>© <span id="year">2026</span> Khalid Karimzai</p>
+      <p>Built with three.js <span id="three-rev"></span> · <a href="https://github.com/ak-karimzai/ak-karimzai.github.io" target="_blank" rel="noopener">Source code</a></p>
+    </div>
+  </footer>
+</body>
+</html>
