@@ -64,7 +64,7 @@ export class Stage {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.shadowMap.type = THREE.PCFShadowMap;
     const box = this.canvas.parentElement;
     renderer.setSize(Math.max(box.clientWidth, 2), Math.max(box.clientHeight, 2), false);
     return renderer;
