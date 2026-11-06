@@ -1,0 +1,47 @@
+name: Project enquiry
+description: Send a brief for a backend, 3D interface or web application project.
+title: "Enquiry: "
+labels: ["enquiry"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for getting in touch. This issue is **public**, so leave out anything private.
+        For a private conversation write on Telegram ([@AkKarimzai](https://t.me/AkKarimzai)) or by email (ak.karimzai@gmail.com).
+  - type: dropdown
+    id: project-type
+    attributes:
+      label: Project type
+      options:
+        - Backend service or API
+        - 3D interface (digital twin, dashboard, configurator)
+        - Business web application
+        - Automation or data collection
+        - Something else
+    validations:
+      required: true
+  - type: dropdown
+    id: budget
+    attributes:
+      label: Budget
+      options:
+        - Not decided yet
+        - Under $500
+        - $500 – $2,000
+        - $2,000 – $5,000
+        - $5,000 – $15,000
+        - Over $15,000
+    validations:
+      required: true
+  - type: input
+    id: deadline
+    attributes:
+      label: Deadline
+      placeholder: e.g. end of January
+  - type: textarea
+    id: details
+    attributes:
+      label: What should it do?
+      description: Who will use it, the main features, and what already exists (systems, data, designs).
+    validations:
+      required: true
