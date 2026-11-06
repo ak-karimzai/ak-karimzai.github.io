@@ -25,6 +25,6 @@ npm run dev      # local server with hot reload
 npm run build    # production build in dist/
 ```
 
-Pushes to `main` are built and deployed by `.github/workflows/deploy.yml` to GitHub Pages.
+`npm run deploy` builds the site and pushes `dist/` to the `gh-pages` branch, which GitHub Pages serves.
 
 Contact details and enquiry options live in `src/config.js`. The GitHub-issue enquiry form is `.github/ISSUE_TEMPLATE/order.yml`.
